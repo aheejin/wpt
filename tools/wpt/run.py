@@ -181,6 +181,7 @@ class BrowserSetup:
             return self.browser.install(self.venv.path, channel)
 
     def install_requirements(self):
+        return
         if not self.venv.skip_virtualenv_setup and self.browser.requirements:
             self.venv.install_requirements(os.path.join(
                 wpt_root, "tools", "wptrunner", self.browser.requirements))
@@ -367,14 +368,15 @@ class Chrome(BrowserSetup):
                     webdriver_binary = None
 
             if webdriver_binary is None:
+                webdriver_binary = os.path.join(self.venv.path, 'chromedriver')
                 install = self.prompt_install("chromedriver")
 
-                if install:
-                    webdriver_binary = self.browser.install_webdriver(
-                        dest=self.venv.bin_path,
-                        channel=browser_channel,
-                        browser_binary=kwargs["binary"],
-                    )
+                #if install:
+                #    webdriver_binary = self.browser.install_webdriver(
+                #        dest=self.venv.bin_path,
+                #        channel=browser_channel,
+                #        browser_binary=kwargs["binary"],
+                #    )
             else:
                 logger.info("Using webdriver binary %s" % webdriver_binary)
 

@@ -161,6 +161,7 @@ def setup_virtualenv(path, skip_venv_setup, props):
     if not should_skip_setup:
         venv.start()
         for path in props["requirements"]:
+            print('install path = ' + path)
             venv.install_requirements(path)
     return venv
 
@@ -169,6 +170,7 @@ def install_command_flag_requirements(venv, kwargs, requirements):
     for command_flag_name, requirement_paths in requirements.items():
         if command_flag_name in kwargs:
             for path in requirement_paths:
+                print('install path2 = ' + path)
                 venv.install_requirements(path)
 
 

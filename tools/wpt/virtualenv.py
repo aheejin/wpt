@@ -105,8 +105,8 @@ class Virtualenv:
             exec(f.read(), {"__file__": path})
 
     def start(self):
-        if not self.exists or self.broken_link:
-            self.create()
+        #if not self.exists or self.broken_link:
+        #   self.create()
         self.activate()
 
     def install(self, *requirements):
